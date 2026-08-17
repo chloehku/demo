@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Creating Your Own Website — an interactive walkthrough</title>
+<meta name="description" content="Three steps, fifteen minutes: spin up your own website on GitHub Pages." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- =====================================================
+     SHELL
+     ===================================================== -->
+<div class="shell">
+
+  <!-- LEFT: vertical step rail -->
+  <aside class="step-rail" aria-label="Steps">
+    <div class="step-rail-inner">
+      <div class="rail-pip pip-1" data-step="1">
+        <span class="pip-num">01</span>
+        <span class="pip-name">GitHub</span>
+        <span class="pip-count" data-step-count="1">0/6</span>
+      </div>
+      <div class="rail-connector"></div>
+      <div class="rail-pip pip-2" data-step="2">
+        <span class="pip-num">02</span>
+        <span class="pip-name">Build</span>
+        <span class="pip-count" data-step-count="2">0/2</span>
+      </div>
+      <div class="rail-connector"></div>
+      <div class="rail-pip pip-3" data-step="3">
+        <span class="pip-num">03</span>
+        <span class="pip-name">Deploy</span>
+        <span class="pip-count" data-step-count="3">0/5</span>
+      </div>
+    </div>
+    <div class="rail-progress" aria-hidden="true">
+      <div class="rail-progress-fill" id="rail-progress-fill"></div>
+    </div>
+  </aside>
+
+  <!-- RIGHT: topbar (above scroll area) -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#slide-hero" class="brand">
+        <span class="brand-mark">⌘</span>
+        <span class="brand-name">Your Own Website</span>
+      </a>
+      <div class="topbar-progress">
+        <span class="topbar-progress-pct" id="topbar-pct">0%</span>
+        <div class="topbar-progress-track"><div id="topbar-progress-fill"></div></div>
+        <span class="topbar-progress-label">done</span>
+      </div>
+      <button class="btn-icon" id="shortcut-btn" type="button" aria-label="Keyboard shortcuts">
+        <span class="kbd-inline">?</span>
+      </button>
+      <button class="btn-icon" id="reset-btn" type="button" aria-label="Reset progress">
+        <span class="icon-reset" aria-hidden="true">↺</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- SCROLL CONTAINER -->
+  <main class="deck" id="deck" tabindex="-1">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="slide slide-hero" id="slide-hero" data-slide="hero">
+      <div class="slide-content slide-content-narrow">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> A 3-step, 13-card walkthrough · ~15 minutes</p>
+        <h1 class="hero-title">
+          Creating <em>your own</em><br/>website.
+        </h1>
+        <p class="hero-lede">
+          Three short stages. About fifteen minutes from sign‑up to a live page
+          you can send to anyone. Tick each card as you finish it — your
+          progress saves automatically.
+        </p>
+
+        <div class="hero-stages" aria-label="Three stages">
+          <div class="stage" data-jump="slide-1-1">
+            <span class="stage-num">01</span>
+            <span class="stage-name">GitHub</span>
+            <span class="stage-meta">6 cards</span>
+          </div>
+          <div class="stage-arrow" aria-hidden="true">→</div>
+          <div class="stage" data-jump="slide-2-1">
+            <span class="stage-num">02</span>
+            <span class="stage-name">Build</span>
+            <span class="stage-meta">2 cards</span>
+          </div>
+          <div class="stage-arrow" aria-hidden="true">→</div>
+          <div class="stage" data-jump="slide-3-1">
+            <span class="stage-num">03</span>
+            <span class="stage-name">Deploy</span>
+            <span class="stage-meta">5 cards</span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" data-jump="slide-1-1" type="button">
+            Begin step 01 <span class="arrow">→</span>
+          </button>
+          <span class="hero-hint">
+            or press <span class="kbd">→</span> on your keyboard
+          </span>
+        </div>
+      </div>
+      <div class="hero-decor" aria-hidden="true">
+        <div class="hero-shape hero-shape-1"></div>
+        <div class="hero-shape hero-shape-2"></div>
+        <div class="hero-shape hero-shape-3"></div>
+      </div>
+    </section>
+
+    <!-- ===================== STEP 1 — INTRO ===================== -->
+    <section class="slide slide-intro" id="slide-1-0" data-slide="1-0" data-step="1">
+      <div class="slide-content slide-content-narrow">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Step 01 of 03</p>
+        <h2 class="intro-title">Set up your<br/><em>home on the internet.</em></h2>
+        <p class="intro-body">
+          GitHub will host your site for free and give it a real URL — your
+          name will literally become <code>your-name.github.io</code>. No
+          payment, no domain registration, no server admin.
+        </p>
+        <button class="btn btn-primary" data-jump="slide-1-1" type="button">
+          Start the first card <span class="arrow">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===================== STEP 1 — CARDS ===================== -->
+
+    <!-- 1.1 Sign up -->
+    <section class="slide slide-split" id="slide-1-1" data-slide="1-1" data-step="1">
+      <div class="slide-frame">
+        <div class="slide-meta">
+          <span class="slide-step-tag">Step 01 · 01</span>
+          <span class="slide-of">6 cards in this step</span>
+        </div>
+        <div class="slide-grid slide-grid-text-only">
+          <div class="slide-text">
+            <h2 class="slide-title">Create a free<br/><em>GitHub account.</em></h2>
+            <p class="slide-body">
+              You'll spend the rest of this walkthrough inside GitHub, so
+              take a moment to set things up properly.
+            </p>
+            <div class="tip">
+              <strong>Heads up:</strong> a GitHub account also unlocks
+              <em>Codespaces</em> (your in-browser code editor) and
+              <em>GitHub Pages</em> (your future website). One signup,
+              three tools.
+            </div>
+            <div class="link-card">
+              <span class="link-card-label">Open</span>
+              <a href="https://github.com/signup" target="_blank" rel="noopener" class="link-card-link">
+                github.com/signup
+                <span class="arrow-sm">↗</span>
+              </a>
+            </div>
+            <div class="action-row">
+              <label class="check">
+                <input type="checkbox" class="check-input" />
+                <span class="check-box" aria-hidden="true"></span>
+                <span class="check-label">Account created</span>
+              </label>
+              <button class="btn btn-primary btn-sm" data-jump="slide-1-2" type="button">
+                Next <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.2 Username -->
+    <section class="slide slide-split" id="slide-1-2" data-slide="1-2" data-step="1">
+      <div class="slide-frame">
+        <div class="slide-meta">
+          <span class="slide-step-tag">Step 01 · 02</span>
+          <span class="slide-of">6 cards in this step</span>
+        </div>
+        <div class="slide-grid">
+          <figure class="slide-media" data-lightbox="assets/slide-03-username.png" data-caption="Username is part of your future URL.">
+            <img src="assets/slide-03-username.png" alt="GitHub signup showing the username field" />
+            <span class="media-tag">Click to enlarge</span>
+          </figure>
+          <div class="slide-text">
+            <h2 class="slide-title">Your <em>username</em><br/>becomes your URL.</h2>
+            <p class="slide-body">
+              Once you pick a username, it locks in as
+              <code>your-username.github.io</code>. That's the only place
+              it appears in your URL, so it's worth a moment of thought.
+            </p>
+            <div class="dos-donts">
+              <div class="dos">
+                <p class="dos-label">Pick a username that's…</p>
+                <ul>
+                  <li>Short and typeable — you'll say it on calls</li>
+                  <li>Professional — same one across GitHub &amp; LinkedIn feels clean</li>
+                  <li>Pronounceable — recruiters will try</li>
+                </ul>
+              </div>
+            </div>
+            <div class="action-row">
+              <label class="check">
+                <input type="checkbox" class="check-input" />
+                <span class="check-box" aria-hidden="true"></span>
+                <span class="check-label">Username chosen</span>
+              </label>
+              <button class="btn btn-primary btn-sm" data-jump="slide-1-3" type="button">
+                Next <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.3 Create repo -->
+    <section class="slide slide-split slide-flip" id="slide-1-3" data-slide="1-3" data-step="1">
+      <div class="slide-frame">
+        <div class="slide-meta">
+          <span class="slide-step-tag">Step 01 · 03</span>
+          <span class="slide-of">6 cards in this step</span>
+        </div>
+        <div class="slide-grid">
+          <div class="slide-text">
+            <h2 class="slide-title">Make a new<br/><em>repository.</em></h2>
+            <p class="slide-body">
+              A repository is just a folder that holds your website's files.
+              Think of it as the project folder for your site.
+            </p>
+            <ol class="number-list">
+              <li>Click the <span class="kbd">+</span> in the top-right of any GitHub page</li>
+              <li>Choose <strong>New repository</strong></li>
+              <li>Set visibility to <strong>Public</strong> (free hosting only works for public repos)</li>
+            </ol>
+            <div class="tip">
+              Don't add a README, .gitignore, or license yet — keep it bare
+              and we control what goes inside.
+            </div>
+            <div class="action-row">
+              <label class="check">
+                <input type="checkbox" class="check-input" />
+                <span class="check-box" aria-hidden="true"></span>
+                <span class="check-label">Repo created (empty)</span>
+              </label>
+              <button class="btn btn-primary btn-sm" data-jump="slide-1-4" type="button">
+                Next <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+          <figure class="slide-media" data-lightbox="assets/slide-04-repo-create.png" data-caption="The + menu → New repository.">
+            <img src="assets/slide-04-repo-create.png" alt="GitHub new repository button" />
+            <span class="media-tag">Click to enlarge</span>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.4 Repo name -->
+    <section class="slide slide-split" id="slide-1-4" data-slide="1-4" data-step="1">
+      <div class="slide-frame">
+        <div class="slide-meta">
+          <span class="slide-step-tag">Step 01 · 04</span>
+          <span class="slide-of">6 cards in this step</span>
+        </div>
+        <div class="slide-grid">
+          <figure class="slide-media" data-lightbox="assets/slide-05-repo-name.png" data-caption="Naming the repo with your username + .github.io.">
+            <img src="assets/slide-05-repo-name.png" alt="Repository naming with [username].github.io" />
+            <span class="media-tag">Click to enlarge</span>
+          </figure>
+          <div class="slide-text">
+            <h2 class="slide-title">Name it<br/><code>[username].github.io</code></h2>
+            <p class="slide-body">
+              The repo name is special. The pattern
+              <code>your-name.github.io</code> tells GitHub
+              <em>“this folder is a website”</em> — it switches from a normal
+              repo to a live page automatically.
+            </p>
+            <div class="callout callout-warn">
+              <span class="callout-mark">!</span>
+              <span>The exact pattern matters. If your username is
+              <code>chloemarketing</code>, your repo name must be
+              <code>chloemarketing.github.io</code> — not
+              <code>chloemarketing.com</code> or <code>chloe-website</code>.</span>
+            </div>
+            <div class="action-row">
+              <label class="check">
+                <input type="checkbox" class="check-input" />
+                <span class="check-box" aria-hidden="true"></span>
+                <span class="check-label">Name set correctly</span>
+              </label>
+              <button class="btn btn-primary btn-sm" data-jump="slide-1-5" type="button">
+                Next <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.5 Codespaces -->
+    <section class="slide slide-split slide-flip" id="slide-1-5" data-slide="1-5" data-step="1">
+      <div class="slide-frame">
+        <div class="slide-meta">
+          <span class="slide-step-tag">Step 01 · 05</span>
+          <span class="slide-of">6 cards in this step</span>
+        </div>
+        <div class="slide-grid">
+          <div class="slide-text">
+            <h2 class="slide-title">Open it in<br/><em>Codespaces.</em></h2>
+            <p class="slide-body">
+              Codespaces is a code editor that runs in your browser — like
+              Google Docs, but for code. Zero installs, zero setup, works on
+              any laptop.
+            </p>
+            <div class="number-list-wrap">
+              <ol class="number-list">
+                <li>Inside the repo, click the green <strong>Code</strong> button</li>
+                <li>Open the <strong>Codespaces</strong> tab</li>
+                <li>Hit <strong>Create codespace on main</strong></li>
+              </ol>
+            </div>
+            <div class="tip">
+              <strong>Free tier:</strong> you get 60 hours/month on a 2‑core
+              machine. More than enough for everything we'll do here.
+            </div>
+            <div class="action-row">
+              <label class="check">
+                <input type="checkbox" class="check-input" />
+                <span class="check-box" aria-hidden="true"></span>
+                <span class="check-label">Codespace is up</span>
+              </label>
+              <button class="btn btn-primary btn-sm" data-jump="slide-1-6" type="button">
+                Next <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+          <figure class="slide-media" data-lightbox="assets/slide-06-codespaces.png" data-caption="Create a Codespace from the Code dropdown.">
+            <img src="assets/slide-06-codespaces.png" alt="GitHub Codespaces creation dialog" />
+            <span class="media-tag">Click to enlarge</span>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.6 Back to GitHub page -->
+    <section class="slide slide-split" id="slide-1-6" data-slide="1-6" data-step="1">
+      <div class="slide-frame">
+        <div class="slide-meta">
+          <span class="slide-step-tag">Step 01 · 06</span>
+          <span class="slide-of">6 cards in this step · last one!</span>
+        </div>
+        <div class="slide-grid">
+          <figure class="slide-media" data-lightbox="assets/slide-07-github-page.png" data-caption="The empty repo. We'll fill it shortly.">
+            <img src="assets/slide-07-github-page.png" alt="GitHub repository page after codespace created" />
+            <span class="media-tag">Click to enlarge</span>
+          </figure>
+          <div class="slide-text">
+            <h2 class="slide-title">Done with step 1.<br/><em>Keep this tab open.</em></h2>
+            <p class="slide-body">
+              Switch back to your GitHub repo tab and leave it open in the
+              background. You'll upload the finished files here in step 3.
+            </p>
+            <div class="callout callout-info">
+              <span class="callout-mark">i</span>
+              <span>If you're using WorkBuddy in another tab, you can now
+              come back to it and start asking for a website.</span>
+            </div>
+            <div class="action-row">
+              <label class="check">
+                <input type="checkbox" class="check-input" />
+                <span class="check-box" aria-hidden="true"></span>
+                <span class="check-label">Repo tab parked</span>
+              </label>
+              <button class="btn btn-primary btn-sm" data-jump="slide-2-0" type="button">
+                On to step 02 <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STEP 2 — INTRO ===================== -->
+    <section class="slide slide-intro slide-intro-alt" id="slide-2-0" data-slide="2-0" data-step="2">
+      <div class="slide-content slide-content-narrow">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Step 02 of 03</p>
+        <h2 class="intro-title">Now have an AI<br/><em>build it for you.</em></h2>
+        <p class="intro-body">
+          The hard part of a website is the design and the decisions —
+          typography, layout, what to show. The AI does that for you in
+          seconds. You stay in the loop as a director: you describe, it
+          produces, you steer.
+        </p>
+        <button class="btn btn-primary" data-jump="slide-2-1" type="button">
+          Begin step 02 <span class="arrow">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 2.1 Sign in -->
+    <section class="slide slide-split slide-flip" id="slide-2-1" data-slide="2-1" data-step="2">
+      <div class="slide-frame">
+        <div class="slide-meta">
+          <span class="slide-step-tag">Step 02 · 01</span>
+          <span class="slide-of">2 cards in this step</span>
+        </div>
+        <div class="slide-grid slide-grid-text-only">
+          <div class="slide-text">
+            <h2 class="slide-title">Sign in to your<br/><em>AI assistant.</em></h2>
+            <p class="slide-body">
+              Pick whichever assistant you have access to. All of them can
+              write a complete website from a prompt.
+            </p>
+            <div class="options-grid">
+              <div class="option">
+                <div class="option-head"><strong>WorkBuddy</strong> <span class="option-tag">easiest</span></div>
+                <p>This app — no setup, no VPN, free during the trial.</p>
+              </div>
+              <div class="option">
+                <div class="option-head"><strong>Codex</strong></div>
+                <p>OpenAI's CLI. Free with a ChatGPT account, but VPN required in some regions.</p>
+              </div>
+              <div class="option">
+                <div class="option-head"><strong>Claude Code</strong></div>
+                <p>Paid Claude subscription + VPN. Powerful, terminal-style workflow.</p>
+              </div>
+            </div>
+            <div class="action-row">
+              <label class="check">
+                <input type="checkbox" class="check-input" />
+                <span class="check-box" aria-hidden="true"></span>
+                <span class="check-label">Signed in</span>
+              </label>
+              <button class="btn btn-primary btn-sm" data-jump="slide-2-2" type="button">
+                Next <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2.2 Chat with AI -->
+    <section class="slide slide-split" id="slide-2-2" data-slide="2-2" data-step="2">
+      <div class="slide-frame">
+        <div class="slide-meta">
+          <span class="slide-step-tag">Step 02 · 02</span>
+          <span class="slide-of">2 cards in this step · last one!</span>
+        </div>
+        <div class="slide-grid">
+          <figure class="slide-media" data-lightbox="assets/slide-09-ai-chat.png" data-caption="Iterate with the AI until the result feels right.">
+            <img src="assets/slide-09-ai-chat.png" alt="AI chat interface for building the site" />
+            <span class="media-tag">Click to enlarge</span>
+          </figure>
+          <div class="slide-text">
+            <h2 class="slide-title">Direct the AI,<br/><em>iterate, ship.</em></h2>
+            <p class="slide-body">
+              A first prompt should describe the <em>kind</em> of site you
+              want, not every detail. The AI will give you something — tell
+              it what to change. Repeat until you love it.
+            </p>
+            <p class="slide-body-sub">Click any prompt to copy it:</p>
+            <div class="prompts">
+              <button class="prompt" type="button" data-copy="Build me a one-page personal site with a hero, an 'About' section, a project gallery (3 cards), and a contact section. Use a warm, editorial palette: terracotta + cream.">
+                <span class="prompt-num">01</span>
+                <span class="prompt-text">Build me a one-page personal site — hero, About, project gallery (3 cards), contact. Warm editorial palette, terracotta + cream.</span>
+                <span class="prompt-copy" aria-hidden="true">📋</span>
+              </button>
+              <button class="prompt" type="button" data-copy="Make the typography feel like a calm magazine: large serif headlines, generous whitespace, and a single accent color. Mobile-first.">
+                <span class="prompt-num">02</span>
+                <span class="prompt-text">Make the typography feel like a calm magazine — large serif headlines, generous whitespace, one accent color, mobile-first.</span>
+                <span class="prompt-copy" aria-hidden="true">📋</span>
+              </button>
+              <button class="prompt" type="button" data-copy="Add a 'Currently' section at the top: 3 small items I'm reading / building / learning. Keep the design clean.">
+                <span class="prompt-num">03</span>
+                <span class="prompt-text">Add a 'Currently' section at the top — 3 small items I'm reading / building / learning.</span>
+                <span class="prompt-copy" aria-hidden="true">📋</span>
+              </button>
+              <button class="prompt" type="button" data-copy="Output a single self-contained index.html with embedded CSS, plus an assets/ folder for any images. No build step.">
+                <span class="prompt-num">04</span>
+                <span class="prompt-text">Output a single self-contained <code>index.html</code> with embedded CSS. No build step.</span>
+                <span class="prompt-copy" aria-hidden="true">📋</span>
+              </button>
+            </div>
+            <div class="action-row">
+              <label class="check">
+                <input type="checkbox" class="check-input" />
+                <span class="check-box" aria-hidden="true"></span>
+                <span class="check-label">Site files I love are ready</span>
+              </label>
+              <button class="btn btn-primary btn-sm" data-jump="slide-3-0" type="button">
+                On to step 03 <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STEP 3 — INTRO ===================== -->
+    <section class="slide slide-intro" id="slide-3-0" data-slide="3-0" data-step="3">
+      <div class="slide-content slide-content-narrow">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Step 03 of 03</p>
+        <h2 class="intro-title">Push it to<br/><em>the open internet.</em></h2>
+        <p class="intro-body">
+          Last 60 seconds. GitHub Pages takes the files you upload and serves
+          them to the world. No server to babysit — your site stays up as
+          long as the repo exists.
+        </p>
+        <button class="btn btn-primary" data-jump="slide-3-1" type="button">
+          Begin step 03 <span class="arrow">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 3.1 Pages settings -->
+    <section class="slide slide-split slide-flip" id="slide-3-1" data-slide="3-1" data-step="3">
+      <div class="slide-frame">
+        <div class="slide-meta">
+          <span class="slide-step-tag">Step 03 · 01</span>
+          <span class="slide-of">5 cards in this step</span>
+        </div>
+        <div class="slide-grid">
+          <div class="slide-text">
+            <h2 class="slide-title">Confirm Pages<br/><em>is on main / root.</em></h2>
+            <p class="slide-body">
+              Back on your repo tab, open <strong>Settings → Pages</strong>.
+              You should see a “Build and deployment” section with the source
+              already set — but let's double-check.
+            </p>
+            <div class="checklist-tight">
+              <div class="checklist-row"><span class="check-bullet">✓</span> Source: <strong>Deploy from a branch</strong></div>
+              <div class="checklist-row"><span class="check-bullet">✓</span> Branch: <strong>main</strong></div>
+              <div class="checklist-row"><span class="check-bullet">✓</span> Folder: <strong>/ (root)</strong></div>
+            </div>
+            <div class="tip">
+              If Pages isn't enabled, GitHub will probably tell you here.
+              That's fine — we'll fix it on the next card.
+            </div>
+            <div class="action-row">
+              <label class="check">
+                <input type="checkbox" class="check-input" />
+                <span class="check-box" aria-hidden="true"></span>
+                <span class="check-label">Settings look right</span>
+              </label>
+              <button class="btn btn-primary btn-sm" data-jump="slide-3-2" type="button">
+                Next <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+          <figure class="slide-media" data-lightbox="assets/slide-11-pages-settings.png" data-caption="Pages settings panel.">
+            <img src="assets/slide-11-pages-settings.png" alt="GitHub Pages settings panel" />
+            <span class="media-tag">Click to enlarge</span>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.2 Find Upload files -->
+    <section class="slide slide-split" id="slide-3-2" data-slide="3-2" data-step="3">
+      <div class="slide-frame">
+        <div class="slide-meta">
+          <span class="slide-step-tag">Step 03 · 02</span>
+          <span class="slide-of">5 cards in this step</span>
+        </div>
+        <div class="slide-grid">
+          <figure class="slide-media" data-lightbox="assets/slide-12-upload-files.png" data-caption="Upload files lives just above the file list.">
+            <img src="assets/slide-12-upload-files.png" alt="Upload files button on a repository page" />
+            <span class="media-tag">Click to enlarge</span>
+          </figure>
+          <div class="slide-text">
+            <h2 class="slide-title">Find the<br/><em>Upload files</em> button.</h2>
+            <p class="slide-body">
+              On the main repo page (the <code>Code</code> tab, not Settings),
+              you should see an <strong>Add file ▾</strong> dropdown.
+              Click it and choose <strong>Upload files</strong>.
+            </p>
+            <div class="callout callout-info">
+              <span class="callout-mark">i</span>
+              <span>If you only see a single button that says
+              <em>Upload files</em>, click that. Either works.</span>
+            </div>
+            <div class="action-row">
+              <label class="check">
+                <input type="checkbox" class="check-input" />
+                <span class="check-box" aria-hidden="true"></span>
+                <span class="check-label">Found it</span>
+              </label>
+              <button class="btn btn-primary btn-sm" data-jump="slide-3-3" type="button">
+                Next <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.3 Upload + commit -->
+    <section class="slide slide-split slide-flip" id="slide-3-3" data-slide="3-3" data-step="3">
+      <div class="slide-frame">
+        <div class="slide-meta">
+          <span class="slide-step-tag">Step 03 · 03</span>
+          <span class="slide-of">5 cards in this step</span>
+        </div>
+        <div class="slide-grid">
+          <div class="slide-text">
+            <h2 class="slide-title">Drop the files,<br/><em>write a message,</em> commit.</h2>
+            <p class="slide-body">
+              Drag <code>index.html</code> in. If your AI also gave you CSS,
+              JS, or image files, drag them too — all at once, in one batch.
+            </p>
+            <div class="filename-list">
+              <p class="filename-list-label">A typical upload looks like:</p>
+              <ul>
+                <li><code>index.html</code></li>
+                <li><code>styles.css</code> <span class="muted">(optional)</span></li>
+                <li><code>app.js</code> <span class="muted">(optional)</span></li>
+                <li><code>assets/</code> folder <span class="muted">(if you have images)</span></li>
+              </ul>
+            </div>
+            <div class="callout callout-warn">
+              <span class="callout-mark">!</span>
+              <span>If your AI gave you a folder structure, upload the
+              <em>contents</em> of the folder, not the folder itself.
+              The file <code>index.html</code> must sit at the repo
+              root.</span>
+            </div>
+            <div class="action-row">
+              <label class="check">
+                <input type="checkbox" class="check-input" />
+                <span class="check-box" aria-hidden="true"></span>
+                <span class="check-label">Files committed</span>
+              </label>
+              <button class="btn btn-primary btn-sm" data-jump="slide-3-4" type="button">
+                Next <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
+          <figure class="slide-media" data-lightbox="assets/slide-13-upload-commit.png" data-caption="Drop files → write commit message → commit.">
+            <img src="assets/slide-13-upload-commit.png" alt="Uploading files and committing to the repository" />
+            <span class="media-tag">Click to enlarge</span>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.4 Reveal — animated URL -->
+    <section class="slide slide-reveal" id="slide-3-4" data-slide="3-4" data-step="3">
+      <div class="slide-content slide-content-narrow slide-reveal-content">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Step 03 · 04</p>
+        <h2 class="intro-title">Wait about a minute.<br/><em>Then watch this.</em></h2>
+
+        <div class="reveal-stage">
+          <div class="reveal-label">Your future URL</div>
+          <div class="reveal-url" aria-live="polite">
+            <span class="reveal-prefix">https://</span><span class="reveal-user" id="reveal-user">your-name</span><span class="reveal-domain">.github.io</span>
+          </div>
+          <div class="reveal-bar" aria-hidden="true">
+            <div class="reveal-bar-fill" id="reveal-bar-fill"></div>
+          </div>
+          <div class="reveal-status" id="reveal-status">Press the button below to deploy…</div>
+        </div>
+
+        <div class="reveal-cta">
+          <button class="btn btn-primary" id="deploy-btn" type="button">
+            <span class="btn-label">Deploy</span>
+            <span class="btn-icon-after" aria-hidden="true">↯</span>
+          </button>
+          <p class="reveal-hint" id="reveal-hint">
+            Click <strong>Deploy</strong> to simulate the build.
+            (In real life, GitHub is doing this — you just kicked it off
+            when you committed.)
+          </p>
+        </div>
+
+        <div class="action-row action-row-center">
+          <label class="check">
+            <input type="checkbox" class="check-input" />
+            <span class="check-box" aria-hidden="true"></span>
+            <span class="check-label">URL works in my browser</span>
+          </label>
+          <button class="btn btn-primary btn-sm" data-jump="slide-3-5" type="button">
+            Finish <span class="arrow">→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.5 You're live + celebration -->
+    <section class="slide slide-celebrate" id="slide-3-5" data-slide="3-5" data-step="3">
+      <div class="slide-content slide-content-narrow">
+        <p class="eyebrow"><span class="eyebrow-dot eyebrow-done">✓</span> Step 03 · 05 · you did it</p>
+        <h2 class="intro-title">
+          You're <em>live</em><br/>on the open internet.
+        </h2>
+
+        <figure class="celebrate-figure" data-lightbox="assets/slide-15-deployed.png" data-caption="A real, working website, served by GitHub Pages.">
+          <img src="assets/slide-15-deployed.png" alt="The deployed personal website" />
+        </figure>
+
+        <div class="celebrate-section">
+          <h3 class="celebrate-h">What now?</h3>
+          <div class="next-grid">
+            <div class="next-card">
+              <span class="next-num">A</span>
+              <div>
+                <strong>Share the URL.</strong>
+                <p>LinkedIn bio, email signature, business cards. Once it's out there, it's out there.</p>
+              </div>
+            </div>
+            <div class="next-card">
+              <span class="next-num">B</span>
+              <div>
+                <strong>Custom domain.</strong>
+                <p>Buy a <code>your-name.com</code> (~$10/yr) and point it at GitHub Pages in DNS settings.</p>
+              </div>
+            </div>
+            <div class="next-card">
+              <span class="next-num">C</span>
+              <div>
+                <strong>Update it any time.</strong>
+                <p>Edit a file → commit → GitHub rebuilds in &lt; 30 seconds. That's the whole workflow forever.</p>
+              </div>
+            </div>
+            <div class="next-card">
+              <span class="next-num">D</span>
+              <div>
+                <strong>Track visits.</strong>
+                <p>Drop in a privacy-friendly analytics tool (Plausible, Umami) to see who's reading.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="final-cta">
+          <button class="btn btn-primary" id="celebrate-btn" type="button">
+            <span class="btn-label">Celebrate the finish 🎉</span>
+          </button>
+          <p class="final-meta">
+            15 cards · 3 steps · 0 minutes of your life wasted on hosting.
+          </p>
+        </div>
+      </div>
+      <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM DOTS -->
+  <nav class="dots" id="dots" aria-label="Slide navigation"></nav>
+
+</div>
+
+<!-- ===================== LIGHTBOX ===================== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="lb-close" type="button" aria-label="Close">×</button>
+  <button class="lb-prev" type="button" aria-label="Previous">‹</button>
+  <button class="lb-next" type="button" aria-label="Next">›</button>
+  <figure class="lb-frame">
+    <img class="lb-img" id="lb-img" src="" alt="" />
+    <figcaption class="lb-cap" id="lb-cap"></figcaption>
+  </figure>
+</div>
+
+<!-- ===================== SHORTCUTS MODAL ===================== -->
+<div class="modal" id="shortcuts" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <h3>Keyboard shortcuts</h3>
+      <button class="modal-close" type="button" aria-label="Close">×</button>
+    </div>
+    <ul class="shortcut-list">
+      <li><span class="kbd-pair"><span class="kbd">→</span></span> Next slide</li>
+      <li><span class="kbd-pair"><span class="kbd">←</span></span> Previous slide</li>
+      <li><span class="kbd-pair"><span class="kbd">Home</span></span> First slide</li>
+      <li><span class="kbd-pair"><span class="kbd">End</span></span> Last slide</li>
+      <li><span class="kbd-pair"><span class="kbd">Esc</span></span> Close lightbox / modal</li>
+      <li><span class="kbd-pair"><span class="kbd">1</span><span class="kbd">2</span><span class="kbd">3</span></span> Jump to step</li>
+      <li><span class="kbd-pair"><span class="kbd">?</span></span> This dialog</li>
+    </ul>
+    <p class="modal-foot">Tip: progress is saved automatically.</p>
+  </div>
+</div>
+
+<!-- ===================== FIRST-RUN TOAST ===================== -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span class="toast-icon">↳</span>
+  <span class="toast-msg">Use <span class="kbd">→</span> to step through. Press <span class="kbd">?</span> for all shortcuts.</span>
+  <button class="toast-close" type="button" aria-label="Dismiss">×</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
